@@ -1,0 +1,9 @@
+# 직접 쓰는 패키지만 적는다. 설치 후 pip freeze 결과로 requirements.txt 버전을 고정한다.
+fastapi
+uvicorn[standard]
+pydantic-settings
+sqlalchemy[asyncio]
+asyncpg
+neo4j
+redis
+httpx
