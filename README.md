@@ -72,10 +72,39 @@ Roundy/
 
 ## 시작하기
 
-개발을 시작하면 채웁니다.
+필요한 것: Docker Desktop, Node.js 24 이상
 
-- 필요한 환경 변수는 `.env.example`에 정리합니다. 실제 키는 `.env`에만 두고 Git에 올리지 않습니다.
-- 로컬에서는 Docker Compose로 FastAPI, PostgreSQL, Neo4j, Redis를 함께 띄울 예정입니다.
+```bash
+# 1. 환경 변수: 예시 파일을 복사하고 API 키와 비밀번호를 채운다 (.env는 Git에 올리지 않음)
+cp .env.example .env
+
+# 2. 백엔드와 DB: FastAPI, PostgreSQL(PostGIS), Neo4j, Redis를 함께 띄운다
+docker compose up -d --build
+
+# 3. 프론트엔드
+cd frontend
+npm install
+npm run dev
+```
+
+| 주소 | 내용 |
+|---|---|
+| http://localhost:5173 | 웹 화면 |
+| http://localhost:8000/health | 백엔드와 DB 연결 상태 |
+| http://localhost:8000/docs | API 문서 (Swagger) |
+| http://localhost:7474 | Neo4j 브라우저 |
+| localhost:5433 | PostgreSQL (DB 도구로 접속할 때) |
+
+백엔드 테스트와 린트는 컨테이너 안에서 실행합니다.
+
+```bash
+docker compose exec backend pytest
+docker compose exec backend ruff check .
+```
+
+- 백엔드 코드는 볼륨으로 연결돼 있어 저장하면 서버가 자동으로 다시 시작됩니다.
+- 백엔드 패키지를 추가하면 `backend/requirements.in`에 적고 `requirements.txt`의 버전을 고정한 뒤 `docker compose up -d --build`로 이미지를 다시 만듭니다.
+- 기능을 개발하기 전에 `docs/specs/_template.md`를 복사해 명세를 먼저 씁니다.
 
 ## 데이터 출처
 
