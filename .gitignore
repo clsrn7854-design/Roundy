@@ -1,0 +1,67 @@
+# ===== 비밀 정보 =====
+# API 키가 들어 있는 파일은 절대 올리지 않는다. 키 이름만 적은 .env.example은 올린다.
+.env
+.env.*
+!.env.example
+
+# ===== Python (backend, data 스크립트) =====
+__pycache__/
+*.py[cod]
+.Python
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+htmlcov/
+
+# ===== Node / React (frontend) =====
+node_modules/
+dist/
+build/
+.vite/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.eslintcache
+
+# ===== 데이터 원본 =====
+# OSM, 고도 파일은 용량이 커서 다운로드 스크립트만 올린다.
+# 테스트용 작은 샘플은 data/samples/ 에 두고 올린다.
+data/raw/
+data/processed/
+data/cache/
+*.pbf
+*.osm
+*.tif
+*.tiff
+
+# ===== 로컬 DB와 Docker 볼륨 =====
+# 샘플 DB를 올려야 하면 그 파일만 !경로 로 예외 처리한다.
+*.sqlite3
+*.db
+docker-data/
+
+# ===== 로그와 임시 파일 =====
+*.log
+logs/
+*.tmp
+*.swp
+*.bak
+
+# ===== OS / 편집기 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# ===== Claude Code 개인 설정 =====
+# 공용 .claude/settings.json 과 CLAUDE.md 는 올린다.
+.claude/settings.local.json
+CLAUDE.local.md
